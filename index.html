@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>SPA app</title>
+</head>
+
+<body>
+	<div id="app">
+		<header>
+			<h1>
+				Knowledge Graph	
+			</h1>
+		</header>
+		<nav>
+			<ul>
+				<li>
+					<a href="#" onclick="changeContent('home')">
+						Home
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<main>
+<div id="maincontent">
+	<h1>Add, View and Update Knowledge Graph</h1>
+</div>
+<div id="addrelationships" style="width: 800px; float: left;">
+<div id ="fileupload">
+		<input type="file" id="fileinput" name="test" onchange="readSingleFile(event)" />
+		<span style="color:red">We have tested till 300 entries, takes 4-5 secs to load graph</span>
+</div>
+<div style = "text-align:left"><br><b>OR <br>Add one by one using below option <br>User can also use below option to append relations to uploaded list</b></div><br>
+				<label for="fname">First Entity:</label>
+				<input type="text" id="firstentity" name="fentity">
+				<select name="cars" id="relationship">
+					<option value="select">Select</option>
+					<option value="manages">Manages</option>
+					<option value="is part of">is part of</option>
+					<option value="owns">Owns</option>
+				</select>
+				<label for="fname">Second Entity:</label>
+				<input type="text" id="secondentity" name="sentity"><br><br>
+				<input type = "button" onclick = "addrelationship()" value = "Add OR Update relationship table">
+				<p>*********************************************</p>
+</div>
+
+<div style="margin-left: 620px;"><span style="font-weight:bold">Query Graph</span> 
+	<br><span style="color:red">Enter a valid Node from the below table</span><br>
+	<span style="color:red">It is a directed graph implementation.</span><br></span><span style="color:red">Query fetches the edges where the given node is a Source</span>
+<div id ="GraphQuery">
+	<input type="text" id="entityquery" name="entityqueryname"><br><br>
+	<input type = "button" onclick = "entityquery()" value = "Query Node Details">
+<div id="queriedsubgraph"></div>
+</div>
+</div>
+<div >
+<p>*********************************************</p>
+<p><b>Right side table displays all relations.<br><br></b></p>
+<span style="color:red">(Refresh to clear all data)</span>
+<div>
+	<button onclick="refresh()"><span style ="font-weight:bold">Refresh</span></button>
+</div>
+<div id="knowledgegraph" style="float: left; width: 50%">
+<div id="knowledgegraphdisplayarea">
+</div>
+</div>	
+<!-- <div style="float: right; width: 50%" id="knowledgegraphtablearea"> -->
+	<div  id="knowledgegraphtablearea"></div>
+<table border="1" align="left" id="knowledgegraphtable">
+</table>
+<div id ="displayfileupload">
+</div>
+</div>
+</div>		
+</main>
+<script src="script.js"></script>
+</body>
+</html>
