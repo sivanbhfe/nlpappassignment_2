@@ -17,6 +17,8 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import random
 import math
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Run in background
 matplotlib.use("agg")
@@ -38,43 +40,13 @@ def serve_static_files(filename):
     return send_from_directory(app.static_folder, filename)
 
 
-@app.route("/entityquery/<entity>", methods=["POST"])
-def entityquery(entity):
+@app.route("/sentimentanalysis", methods=["POST"])
+def entityquery():
     details = request.data
     decoded = json.loads(details)
     testing = eval(decoded)
-    G1 = nx.DiGraph()
-    for i in range(len(testing)):
-        G1.add_node(testing[i]["fentity"], name=testing[i]["fentity"])
-        G1.add_node(testing[i]["sentity"], name=testing[i]["sentity"])
-        G1.add_edge(
-            testing[i]["fentity"],
-            testing[i]["sentity"],
-            start=testing[i]["fentity"],
-            end=testing[i]["fentity"],
-            relation=testing[i]["fentity"]
-            + " "
-            + testing[i]["relationship"]
-            + " "
-            + testing[i]["sentity"],
-        )
-    ed = G1.edges(entity)
-    G2 = G1.edge_subgraph(ed)
-    n = G2.number_of_nodes()
-    if n == 0:
-        n = 1
-    print(n)
-    pos = nx.spring_layout(G2, k=(8 / math.sqrt(n)))
-    nx.draw(G2, pos, node_shape="s", node_size=1000)
-    node_labels = nx.get_node_attributes(G2, "name")
-    edge_labels = nx.get_edge_attributes(G2, "relation")
-    nx.draw_networkx_labels(G2, pos, labels=node_labels)
-    nx.draw_networkx_edge_labels(G2, pos, edge_labels=edge_labels)
-    img = BytesIO()  # file-like object for the image
-    plt.savefig(img)  # save the image to the stream
-    img.seek(0)  # writing moved the cursor to the end of the file, reset
-    plt.clf()  # clear pyplot
-    return send_file(img, mimetype="image/png")
+    print(testing)
+    return testing
 
 
 @app.route("/addrelationship", methods=["POST"])
