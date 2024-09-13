@@ -24,7 +24,6 @@ function runsentimentanalysis() {
     const containertable = document.getElementById("resultarea");
 	formatted = '<span>';
 	formatted  += datafetched;
-	formatted  += "FROM API";
 	formatted  += '</span>';
    	containertable.innerHTML = formatted;
 	  });
@@ -57,7 +56,6 @@ function readSingleFile (evt) {
     const containertable = document.getElementById("resultarea");
 	formatted = '<span>';
 	formatted  += datafetched;
-	formatted  += "FROM API";
 	formatted  += '</span>';
    	containertable.innerHTML = formatted;
 	  });
