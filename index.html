@@ -7,45 +7,50 @@
 "width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<title>SPA app</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<div id="app">
+	<div id="app" > 
 		<header>
 			<h1>
 				Sentiment Analysis	
 			</h1>
 		</header>
-		<nav>
-			<ul>
-				<li>
-					<a href="#" onclick="changeContent('home')">
-						Home
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<main>
-<div id="maincontent">
-	<h1>Upload text to perform sentiment analysis and classification</h1>
-</div>
-<div id="inputtextareadivision" style="width: 800px; float: left;">
-<textarea id="inputtextarea" name="w3review" rows="4" cols="50"></textarea><br>
-<input type = "button" onclick = "runsentimentanalysis()" value = "Run Sentiment Analysis">
-<br><b>OR <br>
-<div id ="fileupload">
-		<input type="file" id="fileinput" name="test" onchange="readSingleFile(event)" />
-		<span style="color:red">Warning</span>
-</div>
-<div style = "text-align:left">Add one by one using below option <br>User can also use below option to append relations to uploaded list</b></div><br>
+<main>
+<div style="align-items: center;">
+	<div id="inputtextareadivision" style="width: 400px; float: left;padding-left: 200px">
+			<h3>Upload text to perform sentiment analysis and classification</h3>
+	<textarea id="inputtextarea" name="w3review" rows="4" cols="50"></textarea><br>
+	<input type = "button" onclick = "runsentimentanalysis()" value = "Run Sentiment Analysis">
+	<br><b>OR</b> <br>
+	<div id ="fileupload">
+			<input type="file" id="fileinput" name="test" onchange="readSingleFile(event)" />
+			<span style="color:red"></span>
+	</div><div></div><br>
+	<p>*********************************************</p>
+	</div>
+	<div style="float: left; padding-left: 200px; padding-top: 20px;">
+	<div style="width: 400px;border: 1px solid black;padding: 10px;" id="repeatinput"></div><br>
+	<div > </div>
+	<div id="resultarea" style="text-align: left; width: 500px; font-weight: bold;"><span> The sentiment category for the above text is:</span></div><br>
 
-				<p>*********************************************</p>
+	<div id="graphdisplayarea" style="width: 800px; float: left;"></div><br>
+	<div id="description" style="width: 800px; "><span style="font-size: small;">(Category primarily determined based on <b>"compound"</b> score value)</span></div>
+	<div><span style="font-size: small;"><b>Compound Score</b><br>
+		Range: The compound score is a single number between -1 and 1.<br>
+		A score closer to 1 indicates a positive sentiment.<br>
+		A score closer to -1 indicates a negative sentiment.<br>
+		A score near 0 indicates a neutral sentiment.</span></div>
+		<br>
+		<button onclick="refresh()"><span style ="font-weight:bold">Refresh</span></button>
+		<span style="color:red">(Refresh to clear all data)</span>
+	</div>	
 </div>
-
-<div id="resultarea" style="width: 800px; float: left;">
-
+<div>
+	
 </div>
-</div>		
+</div>
 </main>
 <script src="script.js"></script>
 </body>

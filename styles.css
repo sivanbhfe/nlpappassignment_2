@@ -1,0 +1,11 @@
+#sentimentoutput[value="Negative"] {
+  background: red;
+}
+
+#sentimentoutput[value="Positive"] {
+  background: Green;
+}
+
+#sentimentoutput[value="Neutral"] {
+  background: #BEBEBE;
+}
