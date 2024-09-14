@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk import pos_tag,wordnet
 
 # Download necessary NLTK datasets
 nltk.download('vader_lexicon')
@@ -87,16 +88,22 @@ def sentimentscoreandvisual():
 
 # Text preprocessing function
 def preprocess_text(text):
-      # Convert to lowercase
-      text = text.lower()
-
       # Tokenize text
       tokens = word_tokenize(text)
 
       # Remove punctuation
       tokens = [word for word in tokens if word.isalnum()]
 
-      return ' '.join(tokens)
+      # Remove stop words
+      stop_words = set(stopwords.words('english'))
+      filtered_text = [word for word in tokens if word.lower() not in stop_words]
+
+      # Lemmatization
+      lemmatizer = WordNetLemmatizer()
+      lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_text]
+      temp = ' '.join(lemmatized_words)
+      print(temp)
+      return ' '.join(lemmatized_words)
 
 
 # driver function
